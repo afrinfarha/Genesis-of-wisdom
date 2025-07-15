@@ -1,0 +1,14 @@
+trigger:
+  branches:
+    include:
+      - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- script: echo "Static website - no build needed"
+  displayName: 'Placeholder build step'
+
+- script: echo "No tests available"
+  displayName: 'Skip tests'
