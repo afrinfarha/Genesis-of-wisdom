@@ -1,15 +1,20 @@
-trigger:
-  branches:
-    include:
+name: Static Site CI
+
+on:
+  push:
+    branches:
       - main
       - feature*
 
-pool:
-  vmImage: 'ubuntu-latest'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-steps:
-- script: echo "Static website - no build needed"
-  displayName: 'Placeholder build step'
+      - name: Placeholder build step
+        run: echo "Static website - no build needed"
 
-- script: echo "No tests available"
-  displayName: 'Skip tests'
+      - name: Skip tests
+        run: echo "No tests available"
