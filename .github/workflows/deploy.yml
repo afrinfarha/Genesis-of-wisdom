@@ -6,41 +6,13 @@ on:
       - main
 
 jobs:
-  deploy-dev:
-    name: Deploy to Development
-    environment: development
+  deploy:
+    name: Deploy to Azure Web App
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Deploy to Azure Web App - Dev
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: devopswebapp2      # ← replace with your actual App Service name
-          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          package: .
 
-  deploy-test:
-    name: Deploy to Testing
-    needs: deploy-dev
-    environment: testing
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Deploy to Azure Web App - Test
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: devopswebapp2
-          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          package: .
-
-  deploy-prod:
-    name: Deploy to Production
-    needs: deploy-test
-    environment: production
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Deploy to Azure Web App - Prod
+      - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
         with:
           app-name: devopswebapp2
